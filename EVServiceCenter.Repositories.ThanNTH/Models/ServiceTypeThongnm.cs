@@ -7,7 +7,7 @@ namespace EVServiceCenter.Repositories.ThanNTH.Models;
 
 public partial class ServiceTypeThongnm
 {
-    public int MaintainingTypeDuyntId { get; set; }
+    public int ServiceTypeThongnmId { get; set; }
 
     public string Description { get; set; }
 

@@ -25,6 +25,8 @@ public partial class ShiftsNamPk
 
     public int ServiceCenterId { get; set; }
 
+    public double? TotalTimeWorkingOnDay { get; set; }
+
     public virtual SystemUserAccount Manager { get; set; }
 
     public virtual ServiceCenterHieupt ServiceCenter { get; set; }

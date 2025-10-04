@@ -3,6 +3,7 @@ using EVServiceCenter.Repositories.ThanNTH.Models;
 using EVServiceCenter.Services.ThanNTH;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.OData.Query;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,6 +21,7 @@ public class CenterPartThanNthsController : ControllerBase
         _service = service;
     }
     // GET: api/<CenterPartThanNthsController>
+    [EnableQuery]
     [Authorize(Roles = "1,2")]
     [HttpGet]
     public async Task<IEnumerable<CenterPartThanNth>> Get()

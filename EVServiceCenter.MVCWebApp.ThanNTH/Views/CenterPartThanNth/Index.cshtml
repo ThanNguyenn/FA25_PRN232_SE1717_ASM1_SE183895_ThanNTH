@@ -1,0 +1,128 @@
+﻿@model X.PagedList.IPagedList<EVServiceCenter.Repositories.ThanNTH.Models.CenterPartThanNth>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Center Parts";
+    var searchRequest = ViewData["SearchRequest"] as EVServiceCenter.Repositories.ThanNTH.ModelExtensions.CenterPartThanNthSearchRequest;
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold text-primary">
+            <i class="bi bi-box-seam"></i> Center Parts
+        </h2>
+        <a asp-action="Create" class="btn btn-success shadow-sm">
+            <i class="bi bi-plus-circle"></i> Create New
+        </a>
+    </div>
+
+    <!-- 🔎 Search form -->
+    <form asp-action="Index" method="get" class="mb-3">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Part Status</label>
+                <input type="text" name="PartStatus" value="@searchRequest?.PartStatus" class="form-control" placeholder="e.g. Active" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Available Quantity</label>
+                <input type="number" name="AvailableQuantity" value="@searchRequest?.AvailableQuantity" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Part Name</label>
+                <input type="text" name="PartName" value="@searchRequest?.PartName" class="form-control" />
+            </div>
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary me-2">
+                    <i class="bi bi-search"></i> Search
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Reset
+                </a>
+            </div>
+        </div>
+    </form>
+
+    <!-- 📋 Table -->
+    <div class="table-responsive shadow-sm rounded">
+        <table class="table table-hover table-bordered align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model[0].AvailableQuantity)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].MinimumQuantity)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].Description)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].PartStatus)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].IsDeleted)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].CreateDate)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].UpdateDate)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].Center)</th>
+                    <th>@Html.DisplayNameFor(model => model[0].Part)</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><span class="badge bg-info text-dark">@item.AvailableQuantity</span></td>
+                        <td>@item.MinimumQuantity</td>
+                        <td>@item.Description</td>
+                        <td>
+                            @if (item.PartStatus == "Active")
+                            {
+                                <span class="badge bg-success">Active</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@item.PartStatus</span>
+                            }
+                        </td>
+                        <td>
+                            @if ((bool)item.IsDeleted)
+                            {
+                                <span class="badge bg-danger">Deleted</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Available</span>
+                            }
+                        </td>
+                        <td>@item.CreateDate?.ToString("yyyy-MM-dd")</td>
+                        <td>@item.UpdateDate?.ToString("yyyy-MM-dd")</td>
+                        <td>@item.Center?.ServiceCenterHieuptId</td>
+                        <td>@item.Part?.PartThanNthid</td>
+                        <td class="text-center">
+                            <a asp-action="Edit" asp-route-id="@item.CenterPartThanNthid" class="btn btn-sm btn-primary me-1">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.CenterPartThanNthid" class="btn btn-sm btn-info me-1 text-white">
+                                <i class="bi bi-eye"></i> Details
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.CenterPartThanNthid" class="btn btn-sm btn-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 📑 Paging -->
+    <div class="row mt-3">
+        @Html.PagedListPager(
+        Model,
+        page => Url.Action("Index", new { PartStatus = searchRequest?.PartStatus, AvailableQuantity = searchRequest?.AvailableQuantity, PartName = searchRequest?.PartName, CurrentPage = page }),
+                new PagedListRenderOptions
+                {
+                    DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+                    DisplayLinkToLastPage = PagedListDisplayMode.Always,
+                    MaximumPageNumbersToDisplay = 10,
+                    ContainerDivClasses = new[] { "d-flex", "justify-content-center" },
+                    PageClasses = new[] { "page-link" },
+                    ActiveLiElementClass = "active",
+                    LiElementClasses = new[] { "page-item" }
+                }
+                )
+    </div>
+</div>

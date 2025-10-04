@@ -1,6 +1,10 @@
+using EVServiceCenter.Repositories.ThanNTH.Models;
 using EVServiceCenter.Services.ThanNTH;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.OData;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using System.Text.Json.Serialization;
@@ -9,7 +13,19 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
+static IEdmModel GetEdmModel()
+{
+    var odataBuilder = new ODataConventionModelBuilder();
+    odataBuilder.EntitySet<CenterPartThanNth>("CenterPartThanNth"); // ENTITY
+    odataBuilder.EntitySet<PartThanNth>("PartThanNth"); // ENTITY
+    return odataBuilder.GetEdmModel();
+}
+builder.Services.AddControllers().AddOData(options =>
+{
+    options.Select().Filter().OrderBy().Expand().SetMaxTop(null).Count();
+    options.AddRouteComponents("odata", GetEdmModel());
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 ///builder.Services.AddSwaggerGen();
@@ -17,6 +33,8 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<ICenterPartThanNthService, CenterPartThanNthService>();
 builder.Services.AddScoped<SystemUserAccountService>();
+builder.Services.AddScoped<PartThanNthService>();
+builder.Services.AddScoped<ServiceCenterHieuPTService>();
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;

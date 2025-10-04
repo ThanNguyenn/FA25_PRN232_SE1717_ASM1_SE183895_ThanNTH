@@ -70,7 +70,6 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(GetConnectionString("DefaultConnection")).UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-
     //    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
     //        => optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=FA25_PRN232_SE1717_G3_EVServiceCenter;User ID=sa;Password=12345;Encrypt=False");
@@ -79,11 +78,11 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
     {
         modelBuilder.Entity<CarThuannt>(entity =>
         {
-            entity.HasKey(e => e.CarThuanntId).HasName("PK__CarThuan__57AF1CECABF3E48A");
+            entity.HasKey(e => e.CarThuanntId).HasName("PK__CarThuan__57AF1CEC586C47A2");
 
             entity.ToTable("CarThuannt");
 
-            entity.HasIndex(e => e.LicensePlate, "UQ__CarThuan__026BC15CEF539564").IsUnique();
+            entity.HasIndex(e => e.LicensePlate, "UQ__CarThuan__026BC15CBD43B483").IsUnique();
 
             entity.Property(e => e.CarName).HasMaxLength(255);
             entity.Property(e => e.Color).HasMaxLength(50);
@@ -100,7 +99,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<CarTypeThuannt>(entity =>
         {
-            entity.HasKey(e => e.CarTypeThuanntId).HasName("PK__CarTypeT__C0401B7367D48749");
+            entity.HasKey(e => e.CarTypeThuanntId).HasName("PK__CarTypeT__C0401B73F617B4F7");
 
             entity.ToTable("CarTypeThuannt");
 
@@ -116,7 +115,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<CenterPartThanNth>(entity =>
         {
-            entity.HasKey(e => e.CenterPartThanNthid).HasName("PK__CenterPa__DF400BE668C1F49C");
+            entity.HasKey(e => e.CenterPartThanNthid).HasName("PK__CenterPa__DF400BE63462666D");
 
             entity.ToTable("CenterPartThanNTH");
 
@@ -139,7 +138,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<CenterRevenueHieuPt>(entity =>
         {
-            entity.HasKey(e => e.CenterRevenueHieuPtid).HasName("PK__CenterRe__E19F399ECD90875D");
+            entity.HasKey(e => e.CenterRevenueHieuPtid).HasName("PK__CenterRe__E19F399E2B480FE7");
 
             entity.ToTable("CenterRevenueHieuPT");
 
@@ -163,7 +162,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<Certificate>(entity =>
         {
-            entity.HasKey(e => e.CertificateId).HasName("PK__Certific__BBF8A7C19C246064");
+            entity.HasKey(e => e.CertificateId).HasName("PK__Certific__BBF8A7C1084BAAAF");
 
             entity.ToTable("Certificate");
 
@@ -179,7 +178,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<Feedback>(entity =>
         {
-            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__6A4BEDD6BF3264ED");
+            entity.HasKey(e => e.FeedbackId).HasName("PK__Feedback__6A4BEDD6B493C5B8");
 
             entity.ToTable("Feedback");
 
@@ -200,7 +199,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<MaintainingDuynt>(entity =>
         {
-            entity.HasKey(e => e.MaintainingDuyntId).HasName("PK__Maintain__84151295001936EF");
+            entity.HasKey(e => e.MaintainingDuyntId).HasName("PK__Maintain__841512959CB84D95");
 
             entity.ToTable("MaintainingDuynt");
 
@@ -234,7 +233,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<MaintaningTypeDuynt>(entity =>
         {
-            entity.HasKey(e => e.MaintainingTypeDuyntId).HasName("PK__Maintani__6385E2F7F288CB16");
+            entity.HasKey(e => e.MaintainingTypeDuyntId).HasName("PK__Maintani__6385E2F7E653A195");
 
             entity.ToTable("MaintaningTypeDuynt");
 
@@ -246,7 +245,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<OrderLamtv>(entity =>
         {
-            entity.HasKey(e => e.OrderLamtvId).HasName("PK__OrderLam__20707CE445F3BAB8");
+            entity.HasKey(e => e.OrderLamtvId).HasName("PK__OrderLam__20707CE4BDBE984D");
 
             entity.ToTable("OrderLamtv");
 
@@ -276,7 +275,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<OrderTypeLamtv>(entity =>
         {
-            entity.HasKey(e => e.OrderTypeLamtvId).HasName("PK__OrderTyp__333ED3C3C06174A0");
+            entity.HasKey(e => e.OrderTypeLamtvId).HasName("PK__OrderTyp__333ED3C38AAC53CF");
 
             entity.ToTable("OrderTypeLamtv");
 
@@ -286,7 +285,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<PartThanNth>(entity =>
         {
-            entity.HasKey(e => e.PartThanNthid).HasName("PK__PartThan__B2A67F5AA5DD13F9");
+            entity.HasKey(e => e.PartThanNthid).HasName("PK__PartThan__B2A67F5AA61D1DC6");
 
             entity.ToTable("PartThanNTH");
 
@@ -297,7 +296,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<ServiceCenterHieupt>(entity =>
         {
-            entity.HasKey(e => e.ServiceCenterHieuptId).HasName("PK__ServiceC__2ABBA2047B262376");
+            entity.HasKey(e => e.ServiceCenterHieuptId).HasName("PK__ServiceC__2ABBA20433F8D302");
 
             entity.ToTable("ServiceCenterHieupt");
 
@@ -311,7 +310,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<ServiceFeedback>(entity =>
         {
-            entity.HasKey(e => e.ServiceFeedbackId).HasName("PK__ServiceF__A279FCF9DA09FE67");
+            entity.HasKey(e => e.ServiceFeedbackId).HasName("PK__ServiceF__A279FCF99CAE066D");
 
             entity.ToTable("ServiceFeedback");
 
@@ -328,7 +327,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<ServiceThongnm>(entity =>
         {
-            entity.HasKey(e => e.ServiceThongnmId).HasName("PK__ServiceT__AD3353EC4039C90A");
+            entity.HasKey(e => e.ServiceThongnmId).HasName("PK__ServiceT__AD3353EC68B9B5CE");
 
             entity.ToTable("ServiceThongnm");
 
@@ -364,14 +363,14 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
                         .HasConstraintName("FK__ServiceOn__Servi__7D439ABD"),
                     j =>
                     {
-                        j.HasKey("ServiceId", "ServiceCenterId").HasName("PK__ServiceO__E200D2B4ED697579");
+                        j.HasKey("ServiceId", "ServiceCenterId").HasName("PK__ServiceO__E200D2B4ABDD401A");
                         j.ToTable("ServiceOnCenter");
                     });
         });
 
         modelBuilder.Entity<ServiceTypeThongnm>(entity =>
         {
-            entity.HasKey(e => e.MaintainingTypeDuyntId).HasName("PK__ServiceT__6385E2F78E1598E2");
+            entity.HasKey(e => e.ServiceTypeThongnmId).HasName("PK__ServiceT__99089536059EEC17");
 
             entity.ToTable("ServiceTypeThongnm");
 
@@ -383,7 +382,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<ShiftsNamPk>(entity =>
         {
-            entity.HasKey(e => e.ShiftNamPkId).HasName("PK__ShiftsNa__297919539F63C609");
+            entity.HasKey(e => e.ShiftNamPkId).HasName("PK__ShiftsNa__297919531A1FDACD");
 
             entity.ToTable("ShiftsNamPK");
 
@@ -458,7 +457,7 @@ public partial class FA25_PRN232_SE1717_G3_EVServiceCenterContext : DbContext
 
         modelBuilder.Entity<UserShiftsNamPk>(entity =>
         {
-            entity.HasKey(e => e.UserShiftsNamPkId).HasName("PK__UserShif__2C3C087971B4F421");
+            entity.HasKey(e => e.UserShiftsNamPkId).HasName("PK__UserShif__2C3C0879C3DD34A5");
 
             entity.ToTable("UserShiftsNamPk");
 

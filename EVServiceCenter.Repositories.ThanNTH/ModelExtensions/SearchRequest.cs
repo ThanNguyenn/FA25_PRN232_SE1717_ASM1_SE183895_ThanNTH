@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 namespace EVServiceCenter.Repositories.ThanNTH.ModelExtensions;
 public class SearchRequest
 {
-    public int? CurrentPage { get; set; }
-    public int? PageSize { get; set; }
+    public int? CurrentPage { get; set; } = 1;
+
+    public int? PageSize { get; set; } = 10;
 }
 
 public class CenterPartThanNthSearchRequest : SearchRequest

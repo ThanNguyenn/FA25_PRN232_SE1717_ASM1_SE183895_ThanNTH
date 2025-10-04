@@ -1,0 +1,78 @@
+﻿@model EVServiceCenter.Repositories.ThanNTH.Models.CenterPartThanNth
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="bi bi-plus-circle"></i> Create New Part</h4>
+            <a asp-action="Index" class="btn btn-light btn-sm">
+                <i class="bi bi-arrow-left"></i> Back to List
+            </a>
+        </div>
+        <div class="card-body">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label asp-for="PartId" class="form-label fw-bold"></label>
+                        <select asp-for="PartId" class="form-select" asp-items="ViewBag.PartId"></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="CenterId" class="form-label fw-bold"></label>
+                        <select asp-for="CenterId" class="form-select" asp-items="ViewBag.CenterId"></select>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="AvailableQuantity" class="form-label fw-bold"></label>
+                        <input asp-for="AvailableQuantity" class="form-control" />
+                        <span asp-validation-for="AvailableQuantity" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="MinimumQuantity" class="form-label fw-bold"></label>
+                        <input asp-for="MinimumQuantity" class="form-control" />
+                        <span asp-validation-for="MinimumQuantity" class="text-danger small"></span>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Description" class="form-label fw-bold"></label>
+                        <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="PartStatus" class="form-label fw-bold"></label>
+                        <input asp-for="PartStatus" class="form-control" />
+                        <span asp-validation-for="PartStatus" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="IsDeleted" class="form-label fw-bold"></label>
+                        <select asp-for="IsDeleted" class="form-select">
+                            <option value="false">Active</option>
+                            <option value="true">Deleted</option>
+                        </select>
+                        <span asp-validation-for="IsDeleted" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="UpdateDate" class="form-label fw-bold"></label>
+                        <input asp-for="UpdateDate" class="form-control" type="date" />
+                        <span asp-validation-for="UpdateDate" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mt-4 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-success px-4">
+                        <i class="bi bi-check-circle"></i> Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -2,11 +2,13 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace EVServiceCenter.Repositories.ThanNTH.Models;
 
 public partial class CenterPartThanNth
 {
+    [Key]
     public int CenterPartThanNthid { get; set; }
 
     public int? PartId { get; set; }
